@@ -1,0 +1,6 @@
+@mugMaker_HostAddress = http://localhost:5041
+
+GET {{mugMaker_HostAddress}}/health
+Accept: application/json
+
+###

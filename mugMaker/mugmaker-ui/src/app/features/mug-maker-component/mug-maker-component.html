@@ -1,0 +1,19 @@
+<h1>MugMaker</h1>
+
+<label>
+  Saying:
+  <input [(ngModel)]="saying" placeholder="World's Okayest Developer" />
+</label>
+
+<button type="button" (click)="create()" [disabled]="isSubmitting">
+  {{ isSubmitting ? 'Creating...' : 'Create Mug' }}
+</button>
+
+<p>isSubmitting = {{ isSubmitting }}</p>
+
+<p *ngIf="errorMsg" style="color: red;">{{ errorMsg }}</p>
+
+<div *ngIf="created">
+  <h3>Created</h3>
+  <pre>{{ created | json }}</pre>
+</div>

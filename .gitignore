@@ -1,0 +1,57 @@
+# Build output
+bin/
+obj/
+out/
+dist/
+build/
+*.user
+*.suo
+
+# VS / Rider / VS Code
+.vs/
+.vscode/
+.idea/
+*.swp
+
+# .NET
+*.pdb
+*.nupkg
+artifacts/
+
+# Node
+node_modules/
+.pnp
+.pnp.js
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.cache/
+.parcel-cache/
+
+# Vite / Angular
+.angular/
+.next/
+.nuxt/
+.output/
+
+# Test
+[Tt]est[Rr]esult*/
+*.trx
+coverage/
+
+# Azure Functions local settings (may contain secrets)
+local.settings.json
+
+# Env / secrets
+.env
+.env.local
+.env.*.local
+*.pfx
+*.pem
+
+# OS
+Thumbs.db
+.DS_Store
+*.log
+*.tmp

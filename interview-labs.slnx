@@ -1,0 +1,11 @@
+<Solution>
+  <Folder Name="/csharp/">
+    <Project Path="csharp/CSharpKatas/CSharpKatas.csproj" />
+  </Folder>
+  <Folder Name="/dotnet-api/">
+    <Project Path="dotnet-api/TodoApi.Fast/TodoApi.Fast.csproj" />
+    <Project Path="dotnet-api/TodoApi/TodoApi.csproj" />
+    <Project Path="mugMaker/mugMaker.csproj" Id="fb38bc5e-7203-445d-968f-228162ef6c88" />
+  </Folder>
+  <Project Path="azure-function/todo-func/todo-func.csproj" />
+</Solution>
