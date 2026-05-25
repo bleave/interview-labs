@@ -361,7 +361,149 @@ Composition: Car HAS-A Engine
 
 ---
 
-# SQL / Database
+# Additional Backend / OOP / Runtime Concepts
+
+## What is deferred execution?
+### Answer
+Deferred execution means a query is not executed until the data is actually enumerated or materialized.
+
+### Common Example
+LINQ queries against IQueryable.
+
+---
+
+## What is lazy loading?
+### Answer
+Lazy loading delays loading related data or objects until they are actually accessed.
+
+---
+
+## Interface vs Abstract Class
+### Interface
+Defines a contract/signature without implementation.
+
+### Abstract Class
+Provides shared base behavior and partial implementation for derived classes.
+
+---
+
+## What is polymorphism?
+### Answer
+Polymorphism allows different objects or implementations to be treated through a common interface while behaving differently at runtime.
+
+### Example
+Animal.Speak() -> Dog barks, Cat meows.
+
+---
+
+## What is encapsulation?
+### Answer
+Encapsulation hides internal implementation details and exposes controlled access to data and behavior through methods or properties.
+
+---
+
+## Stack vs Heap
+### Stack
+- method calls
+- local variables
+- value types
+- fast allocation
+
+### Heap
+- dynamically allocated objects
+- reference types
+- garbage collected
+
+---
+
+## What is boxing/unboxing?
+### Boxing
+Converting a value type into an object/reference type.
+
+### Unboxing
+Converting the object/reference back into a value type.
+
+### Concern
+Can introduce performance overhead.
+
+---
+
+## What is a deadlock?
+### Answer
+A deadlock occurs when multiple processes or transactions block each other while waiting for resources held by the other process.
+
+---
+
+## CPU-bound vs I/O-bound work
+### CPU-bound
+Limited primarily by processor computation.
+
+### I/O-bound
+Spends most of its time waiting on external operations like databases, APIs, files, or networks.
+
+---
+
+## What is connection pooling?
+### Answer
+Connection pooling reuses existing database connections instead of constantly opening and closing new ones, improving performance and scalability.
+
+---
+
+## What is a race condition?
+### Answer
+A race condition occurs when multiple threads or processes access and modify shared mutable state concurrently in a way that produces unpredictable or inconsistent results.
+
+---
+
+## Mutable vs Immutable Objects
+### Mutable
+Object state can change after creation.
+
+### Immutable
+Object state cannot change after creation.
+
+### Benefit of Immutable
+Improves predictability and thread safety.
+
+---
+
+## What is a DTO?
+### Answer
+A DTO (Data Transfer Object) is used to transfer data between application layers or services while decoupling internal domain models from external contracts.
+
+---
+
+## Serialization vs Deserialization
+### Serialization
+Object -> JSON/XML/etc.
+
+### Deserialization
+JSON/XML/etc -> Object.
+
+---
+
+## Optimistic vs Pessimistic Locking
+### Optimistic Locking
+Assumes conflicts are rare and validates data before save.
+
+### Pessimistic Locking
+Locks resources immediately to prevent concurrent modification.
+
+---
+
+## Monolith vs Microservices
+### Monolith
+Single deployable application with tightly integrated components.
+
+### Microservices
+Independently deployable services communicating through APIs or messaging.
+
+### Microservice Tradeoff
+Improves decoupling but increases operational complexity.
+
+---
+
+# SQL
 
 ## IEnumerable vs IQueryable
 ### Answer
