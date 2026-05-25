@@ -102,3 +102,48 @@ Common in:
 ## What controls state in Angular?
 ### Answer
 Angular state can exist at multiple levels depending on scope and complexity. Local component state is typically managed directly within components, shared application state is often managed through services using RxJS observables or BehaviorSubjects, and larger applications may use centralized state management solutions like NgRx. Newer Angular versions also support signals for reactive state handling.
+
+---
+
+## What is the async pipe?
+### Answer
+The async pipe automatically subscribes and unsubscribes from observables or promises directly within Angular templates.
+
+### Example
+```html
+<div>{{ user$ | async }}</div>
+```
+
+---
+
+## What is two-way binding?
+### Answer
+Two-way binding synchronizes UI values and component state in both directions.
+
+### Example
+```html
+<input [(ngModel)]="username" />
+```
+
+---
+
+## What causes unnecessary Angular re-renders?
+### Common Causes
+- mutable object references
+- excessive change detection
+- functions executed in templates
+- unnecessary subscriptions
+- large component trees
+- non-OnPush components
+
+---
+
+## What is OnPush change detection?
+### Answer
+OnPush reduces unnecessary change detection by only re-rendering when input references change, events occur, or observables/signals emit updated values.
+
+---
+
+## Angular Dependency Injection Hierarchy
+### Answer
+Angular dependency injection uses a hierarchy of injectors including root injectors and component-level injectors, allowing dependencies to be scoped globally or locally.
