@@ -503,7 +503,7 @@ Improves decoupling but increases operational complexity.
 
 ---
 
-# SQL
+# SQL / Database
 
 ## IEnumerable vs IQueryable
 ### Answer
@@ -568,7 +568,132 @@ Elasticsearch is optimized for distributed full-text search, filtering, aggregat
 
 ---
 
-# Monitoring / Production Support
+# Senior Engineering Judgment / Architecture Tradeoffs
+
+## When are microservices a bad idea?
+### Answer
+Microservices can be a bad idea when application complexity or team size does not justify the added operational overhead of distributed systems, networking, monitoring, retries, deployment coordination, and eventual consistency.
+
+---
+
+## Why is premature optimization dangerous?
+### Answer
+Premature optimization can waste development effort optimizing the wrong bottlenecks before real production metrics or scaling concerns are understood.
+
+---
+
+## Clean Architecture vs Operational Simplicity
+### Answer
+Architecture should balance maintainability and scalability without introducing unnecessary complexity. Simplicity should not ignore good design, but architecture should also not overextend for theoretical correctness.
+
+---
+
+## Technical Debt vs Delivery Speed
+### Answer
+Technical debt should be managed consciously by balancing delivery needs with maintainability, prioritizing debt that impacts reliability, scalability, developer velocity, or operational stability.
+
+---
+
+## Senior vs Mid-Level Engineer
+### Answer
+Senior engineers think beyond implementation and consider architecture, scalability, maintainability, operational impact, tradeoffs, mentoring, and long-term system health.
+
+---
+
+## Debugging Unfamiliar Systems
+### Answer
+Start by identifying scope, affected systems, dependencies, telemetry, logs, and recent changes before narrowing down the issue through monitoring, tracing, debugging, and code analysis.
+
+---
+
+## Scaling Reads vs Writes
+### Answer
+Read scaling is often improved through caching, replicas, CDNs, or distributed search systems, while write scaling is harder because writes require consistency, coordination, and transactional integrity.
+
+---
+
+## What causes cascading failures?
+### Answer
+Cascading failures occur when failing systems continue retrying or overloading dependent systems without failing fast or isolating the failure.
+
+---
+
+## Why can retries make outages worse?
+### Answer
+Retries can amplify outages when failed operations repeatedly overload already unhealthy downstream systems.
+
+---
+
+## Hardest Parts of Distributed Systems
+### Answer
+Distributed systems are difficult because of coordination, retries, observability, partial failures, eventual consistency, networking issues, and maintaining reliability across many moving parts.
+
+---
+
+## Why is observability important?
+### Answer
+Observability provides visibility into application behavior, performance, dependencies, failures, and distributed request flows so issues can be identified and resolved quickly.
+
+---
+
+## How do you reduce blast radius during deployments?
+### Answer
+Use staged deployments, feature flags, smaller releases, rollback strategies, isolated feature scopes, and thorough pre-production validation.
+
+---
+
+## Why are ecommerce systems difficult?
+### Answer
+Ecommerce systems combine payments, inventory consistency, integrations, fraud prevention, scaling, reliability, and high user expectations under real-time transactional workloads.
+
+---
+
+## Resilience vs Redundancy
+### Resilience
+Ability to fail gracefully and recover.
+
+### Redundancy
+Backup systems/resources available during failure.
+
+---
+
+## Why are integrations fragile?
+### Answer
+Integrations are often fragile because changing contracts, network failures, authentication changes, payload differences, or version mismatches can easily break communication between systems.
+
+---
+
+## Explaining Technical Debt
+### Answer
+Technical debt refers to shortcuts or legacy design decisions that make future development, maintenance, scaling, or operational stability more difficult over time.
+
+---
+
+## Production Stability vs Feature Development
+### Answer
+Production stability should generally take priority because unstable systems reduce customer trust and slow future delivery. Feature development should balance velocity with operational reliability.
+
+---
+
+## Why are APIs difficult to maintain long-term?
+### Answer
+Changing business needs, evolving contracts, backward compatibility requirements, versioning, and consumer dependencies make APIs difficult to evolve safely over time.
+
+---
+
+## Mentoring Junior Developers
+### Answer
+Mentor through code reviews, debugging guidance, architecture discussions, operational thinking, and helping junior developers understand tradeoffs rather than just implementation details.
+
+---
+
+## Why are soft skills important?
+### Answer
+Senior engineers need strong communication, collaboration, mentoring, stakeholder management, and cross-team coordination skills in addition to technical ability.
+
+---
+
+# Monitoring / Production Su
 
 ## Monitoring vs Durability
 ### Monitoring
