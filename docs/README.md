@@ -693,7 +693,162 @@ Senior engineers need strong communication, collaboration, mentoring, stakeholde
 
 ---
 
-# Monitoring / Production Su
+# Production / Operations / Reliability Scenarios
+
+## Intermittent Checkout Failures But Successful Payments
+### Answer
+Check application logs, telemetry, App Insights, queue processing, and payment provider transaction records to determine whether failures occurred before or after order finalization.
+
+---
+
+## Low CPU But Extremely Slow Website
+### Possible Causes
+- thread starvation
+- database contention
+- deadlocks
+- network latency
+- slow downstream dependencies
+- queue backlog
+- lock contention
+
+---
+
+## Query Works In Dev But Times Out In Production
+### Common Causes
+- larger datasets
+- missing indexes
+- concurrency/load differences
+- different execution plans
+- parameter sniffing
+
+---
+
+## What does HTTP 429 mean?
+### Answer
+Too many requests / rate limiting.
+
+---
+
+## Error Rates Spike After Deployment
+### Answer
+Check logs, telemetry, and recent changes immediately. Determine whether rollback, feature disablement, or DR failover is necessary.
+
+---
+
+## Queue Backlog Growing Rapidly
+### Common Causes
+- slow consumers
+- downstream dependency failures
+- poison messages
+- excessive retries
+- insufficient scaling
+
+---
+
+## Risks When Cache Servers Fail
+### Answer
+Cache failures can create DB storms/thundering herd scenarios where all requests suddenly bypass cache and overload databases.
+
+---
+
+## Duplicate Charges Investigation
+### Investigate
+- idempotency handling
+- retry logic
+- timeout behavior
+- payment gateway records
+- transaction tracking
+- duplicate submissions
+
+---
+
+## Protecting Against Slow External APIs
+### Techniques
+- circuit breakers
+- retries with backoff
+- timeout policies
+- fail-fast behavior
+- graceful degradation
+
+---
+
+## Technically Successful Deployment But Broken Business Workflows
+### Answer
+Technical deployment succeeded but business validation/testing missed workflow-level regressions or edge cases.
+
+---
+
+## Why Logs Alone May Not Be Enough
+### Answer
+Distributed systems may require metrics, tracing, infrastructure telemetry, and correlation IDs in addition to logs.
+
+---
+
+## Identifying Memory Leaks In Production
+### Indicators
+- memory growth over time
+- increasing GC pressure
+- degrading performance
+- retained objects/resources
+
+---
+
+## High Traffic Event Risks
+### Common Issues
+- scaling bottlenecks
+- queue backlog
+- cache pressure
+- DB saturation
+- checkout failures
+- slow response times
+
+---
+
+## Why Retries Create Duplicate Data
+### Answer
+Retries can repeat operations unless requests are idempotent or duplicate detection exists.
+
+---
+
+## Horizontal Scaling vs Load Balancing
+### Horizontal Scaling
+Adding additional nodes/servers.
+
+### Load Balancing
+Distributing traffic across servers.
+
+---
+
+## Shared Mutable State Risks
+### Answer
+Shared mutable state can create race conditions, synchronization issues, and unpredictable behavior.
+
+---
+
+## Feature Flags
+### Answer
+Feature flags allow features or functionality to be enabled or disabled independently of deployment.
+
+---
+
+## Safely Releasing Risky Changes
+### Techniques
+- staging validation
+- phased rollout
+- feature flags
+- rollback plans
+- DR validation
+- isolated deployments
+
+---
+
+## Outage Priorities
+### Answer
+Service restoration and stabilization should generally take priority before detailed root cause analysis.
+
+---
+
+# Monitoring / Production Support
 
 ## Monitoring vs Durability
 ### Monitoring
