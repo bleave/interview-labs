@@ -86,6 +86,87 @@ NgRx improves predictability and debugging but can introduce significant boilerp
 
 ---
 
+## What is a reducer?
+### Answer
+A reducer is a pure function that takes the current state and an action, then returns a new updated state.
+
+### Important Concept
+Reducers should avoid side effects and remain predictable.
+
+### Example
+```typescript
+on(addToCart, (state, action) => ({
+   ...state,
+   cart: [...state.cart, action.item]
+}))
+```
+
+---
+
+## What are actions?
+### Answer
+Actions are events or payloads describing something that happened in the application, typically dispatched to update centralized state.
+
+### Examples
+- addToCart
+- loginSuccess
+- loadOrders
+
+---
+
+## What are selectors?
+### Answer
+Selectors are reusable functions used to retrieve or derive specific pieces of state from a centralized store.
+
+---
+
+## What are effects?
+### Answer
+Effects handle asynchronous operations and side effects such as API calls, logging, navigation, or external integrations.
+
+### Examples
+- HTTP requests
+- logging
+- queue publishing
+- navigation
+
+---
+
+## What are signals in Angular?
+### Answer
+Signals are Angular's newer reactive state primitives used for managing reactive UI state with automatic dependency tracking and updates.
+
+### Example
+```typescript
+count = signal(0);
+```
+
+---
+
+## What is change detection?
+### Answer
+Change detection is Angular's mechanism for tracking and updating the UI when application state changes.
+
+---
+
+## What are standalone components?
+### Answer
+Standalone components are Angular components that do not require NgModules and can declare their own dependencies directly.
+
+---
+
+## What are observables?
+### Answer
+Observables are asynchronous streams of data/events that subscribers can react to over time.
+
+### Common Uses
+- HTTP requests
+- websocket streams
+- reactive state
+- event handling
+
+---
+
 ## What is Redux?
 ### Answer
 Redux is a predictable centralized state management pattern where application state is stored in a single store and updated through dispatched actions and reducers.
@@ -129,6 +210,63 @@ Retrying a checkout request should not charge the customer twice.
 ---
 
 ## What is a webhook?
+### Answer
+A webhook is an HTTP callback/event notification where one system pushes event data to another system asynchronously.
+
+### Why Use It?
+Prevents constant polling.
+
+### Ecommerce Examples
+- order created
+- payment captured
+- shipment updated
+- refund processed
+
+### Typical Architecture
+Webhook -> API endpoint -> Queue -> Background processing
+
+### Example: Receiving A Webhook In ASP.NET Core
+```csharp
+[ApiController]
+[Route("api/webhooks")]
+public class WebhooksController : ControllerBase
+{
+    [HttpPost("payment")]
+    public async Task<IActionResult> PaymentWebhook([FromBody] PaymentWebhookDto dto)
+    {
+        // Validate signature/token if applicable
+
+        // Log event
+        _logger.LogInformation($"Received payment event {dto.TransactionId}");
+
+        // Queue async processing
+        await _serviceBus.PublishAsync(dto);
+
+        return Ok();
+    }
+}
+```
+
+### Example: Subscribing To A Webhook
+Typically done through a third-party provider dashboard or API.
+
+Example:
+```json
+{
+  "event": "payment_succeeded",
+  "callbackUrl": "https://myapp.com/api/webhooks/payment"
+}
+```
+
+### Important Concepts
+- webhook signature validation
+- retries
+- idempotency
+- async processing
+- correlation IDs
+- queue decoupling
+
+---
 ### Answer
 A webhook is an HTTP callback/event notification where one system pushes event data to another system asynchronously.
 
