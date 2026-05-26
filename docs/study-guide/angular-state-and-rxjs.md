@@ -208,6 +208,52 @@ Runs after Angular initializes component data bindings.
 
 ---
 
+# Angular Lifecycle Hooks
+
+## ngOnInit
+Runs after Angular initializes component bindings.
+
+Common Uses:
+- initial API calls
+- setup logic
+- subscriptions
+
+---
+
+## ngOnChanges
+Runs when input properties change.
+
+---
+
+## ngAfterViewInit
+Runs after component view initialization.
+
+Useful for:
+- DOM access
+- ViewChild logic
+- third-party libraries
+
+---
+
+## ngOnDestroy
+Runs before component destruction.
+
+Important for cleanup.
+
+### Common Uses
+- unsubscribe observables
+- cleanup timers
+- dispose resources
+
+Example:
+```typescript
+ngOnDestroy(): void {
+  this.subscription.unsubscribe();
+}
+```
+
+---
+
 ## What causes unnecessary Angular re-renders?
 - mutable object references
 - functions in templates
@@ -231,6 +277,57 @@ Automatically subscribes/unsubscribes observables in templates.
 
 ```html
 <div>{{ user$ | async }}</div>
+```
+
+---
+
+# Angular ng-* Directives
+
+## *ngIf
+Conditionally renders elements.
+
+```html
+<div *ngIf="isLoggedIn">
+  Welcome
+</div>
+```
+
+---
+
+## *ngFor
+Loops through collections.
+
+```html
+<li *ngFor="let order of orders">
+  {{ order.id }}
+</li>
+```
+
+---
+
+## ngClass
+Dynamically applies CSS classes.
+
+```html
+<div [ngClass]="{ active: isActive }"></div>
+```
+
+---
+
+## ngStyle
+Dynamically applies styles.
+
+```html
+<div [ngStyle]="{ color: textColor }"></div>
+```
+
+---
+
+## ngModel
+Two-way binding between UI and component.
+
+```html
+<input [(ngModel)]="username" />
 ```
 
 ---
@@ -323,6 +420,13 @@ Useful for:
 
 ## Why use trackBy in ngFor?
 trackBy improves rendering performance by helping Angular identify list items efficiently.
+
+Example:
+```typescript
+trackById(index: number, item: Order) {
+  return item.id;
+}
+```
 
 ---
 
