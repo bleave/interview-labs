@@ -237,7 +237,9 @@ Accessible only within class.
 Accessible within inheritance hierarchy.
 
 ### internal
-Accessible within assembly.
+Accessible within assembly/project.
+
+Useful for hiding implementation details from external projects.
 
 ---
 
@@ -459,22 +461,94 @@ public class OrdersController : ControllerBase
 
 ---
 
-## SOLID Principles
+# SOLID Principles
 
-### S
-Single Responsibility
+## S - Single Responsibility Principle
+A class should have one reason to change.
 
-### O
-Open/Closed
+### Bad Example
+A class handling:
+- database logic
+- email sending
+- business logic
+- logging
 
-### L
-Liskov Substitution
+### Better
+Separate responsibilities into focused classes/services.
 
-### I
-Interface Segregation
+### Benefits
+- maintainability
+- testability
+- cleaner architecture
 
-### D
-Dependency Inversion
+---
+
+## O - Open/Closed Principle
+Software should be open for extension but closed for modification.
+
+### Goal
+Add new behavior without constantly changing existing code.
+
+### Example
+Adding a new payment provider through a new implementation rather than modifying existing processors.
+
+```csharp
+public interface IPaymentProcessor
+{
+    Task ProcessAsync();
+}
+```
+
+---
+
+## L - Liskov Substitution Principle
+Derived classes should be replaceable for their base classes without breaking behavior.
+
+### Example
+If a class inherits from Bird but cannot fly while callers expect flying behavior, inheritance may be incorrect.
+
+### Important Concept
+Inheritance should preserve expected behavior.
+
+---
+
+## I - Interface Segregation Principle
+Clients should not depend on interfaces they do not use.
+
+### Bad Example
+Large interfaces with unrelated methods.
+
+### Better
+Smaller focused interfaces.
+
+```csharp
+public interface IEmailSender
+{
+    Task SendAsync();
+}
+```
+
+---
+
+## D - Dependency Inversion Principle
+High-level modules should depend on abstractions, not concrete implementations.
+
+### Example
+Depend on:
+```csharp
+IOrderService
+```
+
+instead of:
+```csharp
+OrderService
+```
+
+### Benefits
+- loose coupling
+- testability
+- flexibility
+- mocking
 
 ---
 
