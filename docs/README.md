@@ -1,4 +1,4 @@
-# Senior Engineering Interview Reps & Reference Guide
+# Senior Engineering Interview Prep Guide
 
 ## Purpose
 This document is designed for rapid interview prep and verbal recall practice for senior .NET / Angular / Ecommerce / Distributed Systems interviews.
@@ -71,64 +71,18 @@ Upstream dependency timed out.
 
 ---
 
-## Important Concepts
-
-### 401 vs 403
-- 401 = unauthenticated
-- 403 = authenticated but forbidden
-
-### 429
-Commonly related to:
-- throttling
-- rate limiting
-- DDoS protection
-- API protection
-
-### 503 vs 504
-- 503 = service unavailable
-- 504 = dependency timeout
-
-### 202 Accepted
-Common in:
-- queue-based systems
-- async processing
-- distributed architectures
-- webhook/event systems
-
----
-
 # Angular / Frontend
 
 ## What controls state in Angular?
-### Answer
 Angular state can exist at multiple levels depending on scope and complexity. Local component state is typically managed directly within components, shared application state is often managed through services using RxJS observables or BehaviorSubjects, and larger applications may use centralized state management solutions like NgRx. Newer Angular versions also support signals for reactive state handling.
 
----
-
 ## What is the async pipe?
-### Answer
 The async pipe automatically subscribes and unsubscribes from observables or promises directly within Angular templates.
 
-### Example
-```html
-<div>{{ user$ | async }}</div>
-```
-
----
-
 ## What is two-way binding?
-### Answer
 Two-way binding synchronizes UI values and component state in both directions.
 
-### Example
-```html
-<input [(ngModel)]="username" />
-```
-
----
-
 ## What causes unnecessary Angular re-renders?
-### Common Causes
 - mutable object references
 - excessive change detection
 - functions executed in templates
@@ -136,27 +90,43 @@ Two-way binding synchronizes UI values and component state in both directions.
 - large component trees
 - non-OnPush components
 
----
-
 ## What is OnPush change detection?
-### Answer
 OnPush reduces unnecessary change detection by only re-rendering when input references change, events occur, or observables/signals emit updated values.
 
----
-
 ## Angular Dependency Injection Hierarchy
-### Answer
 Angular dependency injection uses a hierarchy of injectors including root injectors and component-level injectors, allowing dependencies to be scoped globally or locally.
+
+## What is a reducer?
+A reducer is a pure function that takes the current state and an action, then returns a new updated state.
+
+## What are actions?
+Actions are events or payloads describing something that happened in the application, typically dispatched to update centralized state.
+
+## What are selectors?
+Selectors are reusable functions used to retrieve or derive specific pieces of state from a centralized store.
+
+## What are effects?
+Effects handle asynchronous operations and side effects such as API calls, logging, navigation, or external integrations.
+
+## What are signals in Angular?
+Signals are Angular's newer reactive state primitives used for managing reactive UI state with automatic dependency tracking and updates.
+
+## What are observables?
+Observables are asynchronous streams of data or events that subscribers can react to over time.
+
+## Subject vs BehaviorSubject
+### Subject
+Only emits new values after subscription.
+
+### BehaviorSubject
+Retains the latest value and immediately emits it to new subscribers.
 
 ---
 
 # Azure / Cloud / Distributed Systems
 
 ## What is Azure Service Bus?
-### Answer
 Azure Service Bus is a durable cloud messaging platform used for asynchronous communication and decoupling distributed systems.
-
----
 
 ## Queue vs Topic
 ### Queue
@@ -165,126 +135,36 @@ FIFO message processing where each message is typically consumed once.
 ### Topic
 Publish/subscribe messaging where multiple subscriptions can receive copies of the same message.
 
----
-
 ## What is a subscription?
-### Answer
 A subscription belongs to a topic and receives its own copy of topic messages for processing.
 
----
-
 ## What is dead lettering?
-### Answer
 Dead lettering occurs when messages fail processing/retries and are moved to a dead-letter queue for inspection.
 
----
-
 ## What is PeekLock mode?
-### Answer
 PeekLock allows a consumer to lock and inspect a message before completing it. The message is only removed after successful completion.
 
----
-
 ## Why are queues useful?
-### Answer
 Queues improve reliability, throughput, retry handling, decoupling, and asynchronous communication across distributed systems.
 
----
-
 ## What are Azure Functions?
-### Answer
 Azure Functions are serverless event-driven compute units triggered by HTTP, queues, timers, webhooks, or events.
 
----
-
-## When are serverless functions useful?
-### Answer
-Useful for lightweight event-driven workloads, background processing, queue consumers, scheduled jobs, and webhook handling.
-
----
-
-## What is autoscaling?
-### Answer
-Autoscaling automatically increases or decreases infrastructure/resources based on system load or metrics.
-
----
-
 ## What is App Insights?
-### Answer
 Azure Application Insights provides telemetry, distributed tracing, metrics, logging, dependency tracking, and performance monitoring.
 
----
-
 ## What are distributed traces?
-### Answer
 Distributed traces follow requests across multiple services, APIs, queues, or dependencies to understand end-to-end request flow and latency.
 
----
-
-## What are deployment slots?
-### Answer
-Deployment slots allow applications to stage builds separately from production for safer releases and easier rollback.
-
----
-
-## Blob Storage vs SQL Storage
-### Blob Storage
-Used for unstructured files or binary data.
-
-### SQL Storage
-Used for structured relational data and transactional querying.
-
----
-
-## Azure SQL vs Cosmos DB
-### Azure SQL
-Relational structured database.
-
-### Cosmos DB
-Globally distributed NoSQL database designed for high-scale partitioned workloads.
-
----
-
 ## What is eventual consistency?
-### Answer
 Eventual consistency allows distributed systems to become consistent over time rather than requiring immediate synchronization.
-
----
-
-## What is a CDN?
-### Answer
-A CDN (Content Delivery Network) distributes static content closer to users for lower latency and improved scalability.
-
----
-
-## Why use Redis?
-### Answer
-Redis improves performance through distributed caching, session/state caching, and reducing database load.
-
----
-
-## Sync vs Async Integration
-### Synchronous
-Systems communicate in real time while waiting for responses.
-
-### Asynchronous
-Systems communicate without blocking while work completes independently.
 
 ---
 
 # Observability / Reliability / Metrics
 
 ## What is P95 latency?
-### Answer
 P95 latency means 95% of requests complete within a specified response time threshold.
-
----
-
-## Why are averages dangerous?
-### Answer
-Averages can hide outliers and poor user experiences caused by slow tail latency.
-
----
 
 ## Metrics vs Logs
 ### Metrics
@@ -293,90 +173,66 @@ Aggregated numerical measurements.
 ### Logs
 Detailed event records.
 
----
-
 ## SLI / SLO / SLA
 ### SLI
-Service Level Indicator - measurement of system health/performance.
+Service Level Indicator.
 
 ### SLO
-Service Level Objective - internal target performance goals.
+Service Level Objective.
 
 ### SLA
-Service Level Agreement - contractual availability/performance commitment.
-
----
-
-## Why are correlation IDs important?
-### Answer
-Correlation IDs trace requests across services, APIs, queues, logs, and dependencies.
-
----
-
-## Uptime vs Availability
-### Uptime
-Raw operational runtime.
-
-### Availability
-Ability for users to successfully access and use the system.
-
----
-
-## What are health checks?
-### Answer
-Health check endpoints allow infrastructure, load balancers, or orchestration systems to verify application health.
-
----
-
-## Ecommerce Monitoring
-### Important Metrics
-- checkout success/failure
-- payment lifecycle
-- response times
-- DB latency
-- cache hit/miss
-- queue backlog
-- dependency failures
-- error rates
-
----
-
-## Leading vs Lagging Indicators
-### Leading
-Real-time indicators of current health.
-
-### Lagging
-Historical or summarized trend reporting.
-
----
-
-## Synthetic vs Real User Monitoring
-### Synthetic Monitoring
-Automated scripted testing/checks.
-
-### Real User Monitoring
-Telemetry collected from actual users.
-
----
-
-## What is alert fatigue?
-### Answer
-Too many low-value alerts desensitize teams and can hide critical incidents.
-
----
+Service Level Agreement.
 
 ## What is MTTR?
-### Answer
 MTTR (Mean Time To Resolution/Recovery) measures how quickly incidents are resolved.
 
----
-
-## What is throughput?
-### Answer
-Throughput measures how many requests, transactions, or operations a system can process over time.
-
----
-
 ## What is tail latency?
-### Answer
 Tail latency refers to the slowest requests in a system, typically represented by P95/P99 metrics.
+
+---
+
+# Security
+
+## What is hashing?
+Hashing is a one-way non-reversible transformation commonly used for passwords and integrity verification.
+
+## Why should passwords be hashed and salted?
+Passwords should be salted and hashed rather than encrypted directly so the original password cannot easily be recovered even if the datastore is compromised.
+
+## What is JWT authentication?
+JWT authentication uses signed tokens containing claims about the authenticated user, allowing stateless authentication between clients and APIs.
+
+## What is SQL injection?
+SQL injection occurs when malicious SQL input is executed against a database.
+
+---
+
+# Ecommerce / Distributed Systems
+
+## What is idempotency?
+Idempotency means repeated operations produce the same result without creating unintended duplicate side effects.
+
+## Why are retries dangerous without idempotency?
+Retries can create duplicate orders, duplicate charges, or inconsistent state if operations are not idempotent.
+
+## What is a webhook?
+A webhook is an HTTP callback/event notification where one system pushes event data to another system asynchronously.
+
+Typical flow:
+Webhook -> API endpoint -> Queue -> Background processing
+
+---
+
+# Production / Operations
+
+## What causes cascading failures?
+Cascading failures occur when failing systems continue retrying or overloading dependent systems without failing fast or isolating the failure.
+
+## What is a deadlock?
+A deadlock occurs when multiple processes or transactions block each other while waiting for resources held by the other process.
+
+## What is a race condition?
+A race condition occurs when multiple threads or processes access and modify shared mutable state concurrently in a way that produces unpredictable or inconsistent results.
+
+## Why are ecommerce systems difficult?
+Ecommerce systems combine payments, inventory consistency, integrations, fraud prevention, scaling, reliability, and high user expectations under real-time transactional workloads.
