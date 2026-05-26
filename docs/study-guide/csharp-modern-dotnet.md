@@ -130,6 +130,177 @@ Translates to database queries.
 
 ---
 
+# OOP Concepts
+
+## Interface
+An interface defines a contract without implementation.
+
+```csharp
+public interface IPaymentProcessor
+{
+    Task ProcessAsync();
+}
+```
+
+### Benefits
+- abstraction
+- mocking/testing
+- loose coupling
+
+---
+
+## Abstract Class
+An abstract class can provide shared behavior and partial implementation.
+
+```csharp
+public abstract class PaymentProcessor
+{
+    public abstract Task ProcessAsync();
+}
+```
+
+---
+
+## Static Class
+Static classes cannot be instantiated.
+
+Used for:
+- helpers
+- utilities
+- extension methods
+
+```csharp
+public static class DateHelpers
+{
+}
+```
+
+---
+
+## Sealed Class
+A sealed class cannot be inherited.
+
+```csharp
+public sealed class PaymentSettings
+{
+}
+```
+
+---
+
+## Inheritance
+A class inherits behavior from another class.
+
+```csharp
+public class AdminUser : User
+{
+}
+```
+
+---
+
+## Composition vs Inheritance
+
+### Composition
+Classes contain other objects.
+
+### Inheritance
+Classes derive from base classes.
+
+Composition is often preferred for flexibility.
+
+---
+
+## Polymorphism
+Different implementations behind a shared contract.
+
+```csharp
+IPaymentProcessor processor = new StripeProcessor();
+```
+
+---
+
+## Encapsulation
+Hiding implementation details behind clean APIs.
+
+---
+
+## Access Modifiers
+
+### public
+Accessible everywhere.
+
+### private
+Accessible only within class.
+
+### protected
+Accessible within inheritance hierarchy.
+
+### internal
+Accessible within assembly.
+
+---
+
+## Virtual vs Override
+
+### virtual
+Allows overriding.
+
+### override
+Overrides base implementation.
+
+---
+
+## Generic Types
+Reusable strongly typed code.
+
+```csharp
+public class Repository<T>
+{
+}
+```
+
+---
+
+## Extension Methods
+Adds functionality to existing types.
+
+```csharp
+public static class StringExtensions
+{
+    public static bool IsEmpty(this string value)
+    {
+        return string.IsNullOrWhiteSpace(value);
+    }
+}
+```
+
+---
+
+## Delegates
+Delegates represent references to methods.
+
+---
+
+## Func vs Action
+
+### Func
+Returns a value.
+
+### Action
+Returns void.
+
+---
+
+## Lambda Expressions
+Short inline functions.
+
+```csharp
+users.Where(x => x.IsActive)
+```
+
+---
+
 ## Dependency Injection
 ASP.NET Core has built-in dependency injection.
 
@@ -245,6 +416,16 @@ Generations:
 
 ---
 
+## Stack vs Heap
+
+### Stack
+Fast memory for method frames/value types.
+
+### Heap
+Dynamic memory for objects.
+
+---
+
 ## Boxing / Unboxing
 
 ### Boxing
@@ -273,32 +454,6 @@ Metadata annotations.
 [ApiController]
 public class OrdersController : ControllerBase
 {
-}
-```
-
----
-
-## Generic Types
-Reusable strongly typed code.
-
-```csharp
-public class Repository<T>
-{
-}
-```
-
----
-
-## Extension Methods
-Adds functionality to existing types.
-
-```csharp
-public static class StringExtensions
-{
-    public static bool IsEmpty(this string value)
-    {
-        return string.IsNullOrWhiteSpace(value);
-    }
 }
 ```
 
