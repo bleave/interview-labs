@@ -147,3 +147,236 @@ OnPush reduces unnecessary change detection by only re-rendering when input refe
 ## Angular Dependency Injection Hierarchy
 ### Answer
 Angular dependency injection uses a hierarchy of injectors including root injectors and component-level injectors, allowing dependencies to be scoped globally or locally.
+
+---
+
+# Azure / Cloud / Distributed Systems
+
+## What is Azure Service Bus?
+### Answer
+Azure Service Bus is a durable cloud messaging platform used for asynchronous communication and decoupling distributed systems.
+
+---
+
+## Queue vs Topic
+### Queue
+FIFO message processing where each message is typically consumed once.
+
+### Topic
+Publish/subscribe messaging where multiple subscriptions can receive copies of the same message.
+
+---
+
+## What is a subscription?
+### Answer
+A subscription belongs to a topic and receives its own copy of topic messages for processing.
+
+---
+
+## What is dead lettering?
+### Answer
+Dead lettering occurs when messages fail processing/retries and are moved to a dead-letter queue for inspection.
+
+---
+
+## What is PeekLock mode?
+### Answer
+PeekLock allows a consumer to lock and inspect a message before completing it. The message is only removed after successful completion.
+
+---
+
+## Why are queues useful?
+### Answer
+Queues improve reliability, throughput, retry handling, decoupling, and asynchronous communication across distributed systems.
+
+---
+
+## What are Azure Functions?
+### Answer
+Azure Functions are serverless event-driven compute units triggered by HTTP, queues, timers, webhooks, or events.
+
+---
+
+## When are serverless functions useful?
+### Answer
+Useful for lightweight event-driven workloads, background processing, queue consumers, scheduled jobs, and webhook handling.
+
+---
+
+## What is autoscaling?
+### Answer
+Autoscaling automatically increases or decreases infrastructure/resources based on system load or metrics.
+
+---
+
+## What is App Insights?
+### Answer
+Azure Application Insights provides telemetry, distributed tracing, metrics, logging, dependency tracking, and performance monitoring.
+
+---
+
+## What are distributed traces?
+### Answer
+Distributed traces follow requests across multiple services, APIs, queues, or dependencies to understand end-to-end request flow and latency.
+
+---
+
+## What are deployment slots?
+### Answer
+Deployment slots allow applications to stage builds separately from production for safer releases and easier rollback.
+
+---
+
+## Blob Storage vs SQL Storage
+### Blob Storage
+Used for unstructured files or binary data.
+
+### SQL Storage
+Used for structured relational data and transactional querying.
+
+---
+
+## Azure SQL vs Cosmos DB
+### Azure SQL
+Relational structured database.
+
+### Cosmos DB
+Globally distributed NoSQL database designed for high-scale partitioned workloads.
+
+---
+
+## What is eventual consistency?
+### Answer
+Eventual consistency allows distributed systems to become consistent over time rather than requiring immediate synchronization.
+
+---
+
+## What is a CDN?
+### Answer
+A CDN (Content Delivery Network) distributes static content closer to users for lower latency and improved scalability.
+
+---
+
+## Why use Redis?
+### Answer
+Redis improves performance through distributed caching, session/state caching, and reducing database load.
+
+---
+
+## Sync vs Async Integration
+### Synchronous
+Systems communicate in real time while waiting for responses.
+
+### Asynchronous
+Systems communicate without blocking while work completes independently.
+
+---
+
+# Observability / Reliability / Metrics
+
+## What is P95 latency?
+### Answer
+P95 latency means 95% of requests complete within a specified response time threshold.
+
+---
+
+## Why are averages dangerous?
+### Answer
+Averages can hide outliers and poor user experiences caused by slow tail latency.
+
+---
+
+## Metrics vs Logs
+### Metrics
+Aggregated numerical measurements.
+
+### Logs
+Detailed event records.
+
+---
+
+## SLI / SLO / SLA
+### SLI
+Service Level Indicator - measurement of system health/performance.
+
+### SLO
+Service Level Objective - internal target performance goals.
+
+### SLA
+Service Level Agreement - contractual availability/performance commitment.
+
+---
+
+## Why are correlation IDs important?
+### Answer
+Correlation IDs trace requests across services, APIs, queues, logs, and dependencies.
+
+---
+
+## Uptime vs Availability
+### Uptime
+Raw operational runtime.
+
+### Availability
+Ability for users to successfully access and use the system.
+
+---
+
+## What are health checks?
+### Answer
+Health check endpoints allow infrastructure, load balancers, or orchestration systems to verify application health.
+
+---
+
+## Ecommerce Monitoring
+### Important Metrics
+- checkout success/failure
+- payment lifecycle
+- response times
+- DB latency
+- cache hit/miss
+- queue backlog
+- dependency failures
+- error rates
+
+---
+
+## Leading vs Lagging Indicators
+### Leading
+Real-time indicators of current health.
+
+### Lagging
+Historical or summarized trend reporting.
+
+---
+
+## Synthetic vs Real User Monitoring
+### Synthetic Monitoring
+Automated scripted testing/checks.
+
+### Real User Monitoring
+Telemetry collected from actual users.
+
+---
+
+## What is alert fatigue?
+### Answer
+Too many low-value alerts desensitize teams and can hide critical incidents.
+
+---
+
+## What is MTTR?
+### Answer
+MTTR (Mean Time To Resolution/Recovery) measures how quickly incidents are resolved.
+
+---
+
+## What is throughput?
+### Answer
+Throughput measures how many requests, transactions, or operations a system can process over time.
+
+---
+
+## What is tail latency?
+### Answer
+Tail latency refers to the slowest requests in a system, typically represented by P95/P99 metrics.
