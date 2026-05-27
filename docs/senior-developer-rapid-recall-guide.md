@@ -1,229 +1,90 @@
 # Senior Developer Interview Rapid Recall Guide
 
----
+## SOLID
 
-# SOLID Principles
+- **S — Single Responsibility**: One job only.
+- **O — Open/Closed**: Extend, don’t rewrite.
+- **L — Liskov Substitution**: Child behaves like parent.
+- **I — Interface Segregation**: Keep interfaces small.
+- **D — Dependency Inversion**: Depend on abstractions.
 
-## S — Single Responsibility
-“One job only.”
+## ACID
 
-A class should have one reason to change.
+- **Atomicity**: All or nothing.
+- **Consistency**: Keep data valid.
+- **Isolation**: Transactions stay separate.
+- **Durability**: Saved forever.
 
----
+## HTTP Status Codes
 
-## O — Open/Closed
-“Extend, don’t rewrite.”
-
-Add new behavior without modifying existing code.
-
----
-
-## L — Liskov Substitution
-“Child must behave like parent.”
-
-Derived classes should not break expected behavior.
-
----
-
-## I — Interface Segregation
-“Keep interfaces small.”
-
-Don’t force classes to implement methods they don’t use.
-
----
-
-## D — Dependency Inversion
-“Depend on contracts, not implementations.”
-
-Inject abstractions/interfaces instead of concrete classes.
-
-Example:
-- `IMessageService`
-- `EmailService`
-- `SmsService`
-
----
-
-# ACID Database Principles
-
-## A — Atomicity
-“All or nothing.”
-
----
-
-## C — Consistency
-“Keep data valid.”
-
----
-
-## I — Isolation
-“Transactions stay separate.”
-
----
-
-## D — Durability
-“Saved forever.”
-
----
-
-# HTTP Status Codes
-
-## 200 OK
-Request succeeded.
-
-## 201 Created
-Resource successfully created.
-
-## 204 No Content
-Success but nothing returned.
-
-## 400 Bad Request
-Invalid request from client.
-
-## 401 Unauthorized
-Not authenticated.
-
-## 403 Forbidden
-Authenticated but not allowed.
-
-## 404 Not Found
-Resource does not exist.
-
-## 409 Conflict
-Conflict with current state/data.
-
-Example:
-- Duplicate email
-- Version conflict
-
-## 500 Internal Server Error
-Unhandled server failure.
-
-## 502 Bad Gateway
-Upstream service failed.
-
-## 503 Service Unavailable
-Service temporarily unavailable.
-
-## 504 Gateway Timeout
-Upstream service timed out.
+- **200** OK → Success
+- **201** Created → Resource created
+- **204** No Content → Success, nothing returned
+- **400** Bad Request → Invalid request
+- **401** Unauthorized → Not authenticated
+- **403** Forbidden → No permission
+- **404** Not Found → Resource missing
+- **409** Conflict → Duplicate/version conflict
+- **500** Internal Server Error → Server crash/error
+- **502** Bad Gateway → Upstream service failure
+- **503** Service Unavailable → Temporary outage
+- **504** Gateway Timeout → Upstream timeout
 
 Quick memory:
 - 2xx = success
 - 4xx = client issue
 - 5xx = server issue
 
----
+## Authentication vs Authorization
 
-# Authentication vs Authorization
+- **Authentication** = Who are you?
+- **Authorization** = What can you do?
 
-## Authentication
-“Who are you?”
+## JWT / OAuth / CORS
 
-Login validation.
+- **JWT**: Stateless auth token
+- **OAuth**: Delegated login (Google/Microsoft)
+- **CORS**: Controls allowed frontend origins
 
----
+## CSRF vs XSS
 
-## Authorization
-“What can you do?”
-
-Permissions and access control.
-
----
-
-# JWT
-
-“Stateless auth token.”
-
-Contains:
-- User ID
-- Claims/Roles
-- Expiration
-
-Server validates token signature instead of session state.
-
----
-
-# OAuth
-
-“Delegated login.”
-
-Examples:
-- Login with Google
-- Login with Microsoft
-
----
-
-# CORS
-
-“Browser security policy.”
-
-Controls which frontends may call your API.
-
----
-
-# CSRF vs XSS
-
-## CSRF
-Tricks authenticated users into making requests.
+- **CSRF**: Tricks authenticated users into requests
+- **XSS**: Injects malicious JavaScript
 
 Protection:
 - CSRF tokens
-- SameSite cookies
-
----
-
-## XSS
-Injects malicious JavaScript.
-
-Protection:
 - Output encoding
 - Input sanitization
 - CSP headers
 
----
+## Dependency Injection
 
-# Dependency Injection
-
-“Inject dependencies instead of creating them.”
+Inject dependencies instead of creating them.
 
 Benefits:
 - Loose coupling
 - Easier testing
 - Swappable implementations
 
----
+## Async / Await
 
-# Async / Await
+Don’t block threads during I/O.
 
-“Don’t block threads during I/O.”
-
-Improves scalability for:
-- Database calls
-- HTTP requests
+Best for:
+- DB calls
+- HTTP calls
 - File operations
 
 Not useful for CPU-heavy work.
 
----
+## Repository Pattern / Unit of Work
 
-# Repository Pattern
+- **Repository**: Abstract data access
+- **Unit of Work**: Commit multiple DB operations together
 
-“Abstract data access.”
+## Middleware (.NET)
 
-Separates business logic from persistence logic.
-
----
-
-# Unit of Work
-
-“Commit multiple DB operations together.”
-
----
-
-# Middleware (.NET)
-
-“Request pipeline components.”
+Request pipeline components.
 
 Examples:
 - Authentication
@@ -231,39 +92,27 @@ Examples:
 - Exception handling
 - CORS
 
----
+## Idempotency
 
-# Idempotency
-
-“Safe retries without duplication.”
+Safe retries without duplication.
 
 Example:
 - User clicks checkout twice
 - Only one payment processes
 
-Use:
-- Idempotency keys
+Use idempotency keys.
 
----
+## Message Queues / Events
 
-# Message Queues
-
-“Async communication between systems.”
+### Queues
+Async communication.
 
 Examples:
 - Azure Service Bus
 - RabbitMQ
 - Kafka
 
-Good for:
-- Orders
-- Emails
-- Inventory updates
-
----
-
-# Event-Driven Architecture
-
+### Event-Driven Architecture
 “Something happened.”
 
 Examples:
@@ -271,43 +120,29 @@ Examples:
 - PaymentProcessed
 - InventoryReserved
 
----
+## Caching
 
-# Caching
+- **Memory Cache**: Single server
+- **Distributed Cache**: Shared cache (Redis)
+- **CDN**: Global static asset caching
 
-## Memory Cache
-Single server cache.
+## Horizontal Scaling
 
-## Distributed Cache
-Shared cache across servers.
-
-Example:
-- Redis
-
-## CDN
-Caches static files globally.
-
----
-
-# Horizontal Scaling
-
-“Add more servers.”
+Add more servers.
 
 Requirements:
 - Stateless APIs
 - Distributed cache
-- Shared storage/database
+- Shared DB/storage
 
----
+## Microservices
 
-# Microservices
-
-“Small independently deployable services.”
+Small independently deployable services.
 
 Pros:
 - Independent scaling
-- Team ownership
 - Isolation
+- Team ownership
 
 Cons:
 - Complexity
@@ -315,62 +150,37 @@ Cons:
 - Distributed debugging
 
 Senior answer:
-“Don’t start with microservices unless complexity justifies it.”
+> Don’t start with microservices unless complexity justifies it.
 
----
+## SQL
 
-# SQL Indexes
-
-“Make reads faster.”
+### Indexes
+Make reads faster.
 
 Tradeoff:
 - Faster reads
-- Slower inserts/updates
+- Slower writes
 
----
+### Transactions
+Keep DB operations consistent.
 
-# Transactions
+### Deadlocks
+Processes waiting on each other.
 
-“Keep multiple DB operations consistent.”
-
-Use when multiple operations must succeed together.
-
----
-
-# Deadlocks
-
-“Processes waiting on each other.”
-
-Reduce by:
+Reduce with:
 - Short transactions
 - Consistent table access order
 
----
+### N+1 Query Problem
+One query triggers many extra queries.
 
-# N+1 Query Problem
+## API Design
 
-“One query triggers many extra queries.”
-
-Common ORM issue.
-
----
-
-# API Design
-
-## GET
-Read data.
-
-## POST
-Create data.
-
-## PUT
-Replace resource.
-
-## PATCH
-Partial update.
-
-## DELETE
-Remove resource.
+- **GET** = Read
+- **POST** = Create
+- **PUT** = Replace
+- **PATCH** = Partial update
+- **DELETE** = Remove
 
 Best practices:
 - Pagination
@@ -378,11 +188,9 @@ Best practices:
 - Versioning
 - Proper status codes
 
----
+## E-Commerce System Design
 
-# E-Commerce System Design
-
-## Robust Shopping Cart
+### Robust Shopping Cart
 
 Key ideas:
 - Stateless APIs
@@ -390,148 +198,77 @@ Key ideas:
 - Persistent carts
 - Inventory reservation
 - Idempotent checkout
-- Queue-based order processing
+- Queue order processing
 - Retry failed payments
 
 Senior answer:
-“I’d separate cart, checkout, payment, and fulfillment concerns while designing for retries and eventual consistency.”
+> Separate cart, checkout, payment, and fulfillment concerns.
 
----
+## Azure Quick Hits
 
-# Azure Quick Hits
+- **App Service**: Hosted web apps/APIs
+- **Azure Functions**: Serverless compute
+- **Service Bus**: Reliable messaging
+- **Azure Storage**: Scalable storage
+- **Key Vault**: Secrets/certificates
+- **Application Insights**: Telemetry/monitoring
 
-## Azure App Service
-Hosted web apps/APIs.
+## Reliability / Production Engineering
 
-## Azure Functions
-Serverless event-driven compute.
+- **Retry Policy**: Retry transient failures
+- **Circuit Breaker**: Stop hammering failing services
+- **Health Checks**: Verify dependencies work
+- **Observability**: Logs, metrics, traces
 
-## Azure Service Bus
-Reliable enterprise messaging.
+## Garbage Collection (.NET)
 
-## Azure Storage
-Scalable cloud storage.
-
-## Azure Key Vault
-Secrets/certificates management.
-
-## Application Insights
-Telemetry and monitoring.
-
----
-
-# Reliability / Production Engineering
-
-## Retry Policy
-Retry transient failures.
-
-## Circuit Breaker
-Stop hammering failing services.
-
-## Health Checks
-Verify app dependencies are functional.
-
-## Observability
-Logs, metrics, traces.
-
----
-
-# Garbage Collection (.NET)
-
-## Gen 0
-Short-lived objects.
-
-## Gen 1
-Objects surviving Gen 0.
-
-## Gen 2
-Long-lived objects.
-
-## LOH (Large Object Heap)
-Large allocations.
+- **Gen 0**: Short-lived objects
+- **Gen 1**: Survived Gen 0
+- **Gen 2**: Long-lived objects
+- **LOH**: Large Object Heap
 
 Memory leak clues:
-- Increasing memory usage
+- Increasing memory
 - High GC pressure
 - Long Gen 2 collections
 
 Tools:
-- Application Insights
+- App Insights
 - dotMemory
 - PerfView
 
----
+## Angular Quick Hits
 
-# Angular Quick Hits
+- **Components**: Reusable UI pieces
+- **Services**: Shared logic/data access
+- **Dependency Injection**: Angular heavily uses DI
+- **Observables/RxJS**: Reactive async streams
+- **Modules**: Feature organization
+- **Standalone Components**: Modern Angular architecture
+- **Templates**: HTML with bindings/directives
 
-## Components
-Reusable UI pieces.
+## Senior-Level Interview Phrases
 
-## Services
-Shared logic/data access.
+### Scaling
+> Start simple and evolve architecture as bottlenecks become real.
 
-## Dependency Injection
-Angular heavily uses DI.
+### Performance
+> Find the biggest bottleneck before optimizing.
 
-## Observables / RxJS
-Reactive async event streams.
+### Reliability
+> Design assuming downstream systems will eventually fail.
 
-## Modules
-Feature organization (older Angular style).
+### Leadership
+> Senior engineers reduce risk and help other developers make good decisions.
 
-## Standalone Components
-Modern Angular component architecture.
+### Modernization
+> Incremental modernization is safer than full rewrites.
 
-## Templates
-HTML views with bindings/directives.
+## Common Buzzwords
 
----
-
-# Senior-Level Interview Phrases
-
-## Scaling
-“Start simple and evolve architecture as bottlenecks become real.”
-
----
-
-## Performance
-“Find the biggest bottleneck first before optimizing.”
-
----
-
-## Reliability
-“Design assuming downstream systems will eventually fail.”
-
----
-
-## Leadership
-“Senior engineers reduce risk and help other developers make good decisions.”
-
----
-
-## Modernization
-“Incremental modernization is usually safer than full rewrites.”
-
----
-
-# Common Interview Buzzwords
-
-## Loose Coupling
-Components minimally depend on each other.
-
-## High Cohesion
-Related responsibilities stay together.
-
-## Separation of Concerns
-Keep responsibilities separated.
-
-## DRY
-“Don’t Repeat Yourself.”
-
-## KISS
-“Keep It Simple, Stupid.”
-
-## YAGNI
-“You Aren’t Gonna Need It.”
-
-Avoid premature complexity.
+- **Loose Coupling**: Minimal dependencies
+- **High Cohesion**: Related responsibilities together
+- **Separation of Concerns**: Keep responsibilities separated
+- **DRY**: Don’t Repeat Yourself
+- **KISS**: Keep It Simple, Stupid
+- **YAGNI**: You Aren’t Gonna Need It
