@@ -244,6 +244,130 @@ Abstracts data access from business logic.
 
 ---
 
+# Redis
+
+## What is Redis?
+Redis is an in-memory distributed data store commonly used for caching and high-speed distributed state management.
+
+Redis is extremely fast because it primarily operates in memory.
+
+---
+
+## Redis vs SQL Server
+
+### SQL Server
+- source of truth
+- durable relational storage
+- transactional consistency
+- reporting/joins
+
+### Redis
+- ultra-fast reads/writes
+- distributed temporary state
+- cache/session workloads
+- high-throughput ephemeral data
+
+Redis usually complements SQL rather than replacing it.
+
+---
+
+## Redis Use Cases Beyond Caching
+
+### Distributed Session State
+Allows multiple web servers to share session/auth state.
+
+Useful for horizontally scaled applications.
+
+---
+
+### Shopping Carts
+Redis is excellent for cart/session state because:
+- fast
+- temporary
+- frequently accessed
+- distributed across servers
+
+---
+
+### Distributed Locks
+Helps prevent:
+- duplicate processing
+- race conditions
+- concurrent workflow conflicts
+
+Example:
+```text
+Only one worker may process this order.
+```
+
+---
+
+### Rate Limiting / Throttling
+Redis counters are commonly used for:
+- API throttling
+- abuse prevention
+- request limiting
+
+---
+
+### Pub/Sub Messaging
+Redis can broadcast messages/events between systems.
+
+Useful for:
+- notifications
+- websocket updates
+- SignalR-style systems
+- lightweight event propagation
+
+---
+
+### Counters / Leaderboards
+Redis is excellent for:
+- atomic counters
+- rankings
+- scoring systems
+- high-speed increments
+
+---
+
+### Feature Flags / Distributed Config
+Redis can store:
+- feature flags
+- rollout toggles
+- shared app configuration
+
+---
+
+### Lightweight Queueing
+Redis can support lightweight queues.
+
+Enterprise systems may still prefer:
+- Azure Service Bus
+- RabbitMQ
+- Kafka
+
+for stronger durability and enterprise messaging features.
+
+---
+
+## Important Redis Tradeoffs
+
+Redis is usually NOT the source of truth.
+
+Potential concerns:
+- stale cache data
+- cache invalidation complexity
+- eventual consistency
+- memory limits
+- distributed synchronization
+
+---
+
+## Strong Interview Answer
+“Redis is commonly used not only for distributed caching, but also for session state, shopping carts, throttling, distributed locks, counters, pub/sub messaging, and temporary high-speed distributed state management.”
+
+---
+
 # Polly / Resilience Patterns
 
 ## What is Polly?
@@ -387,10 +511,48 @@ Sometimes resilience means controlled degradation, not full recovery.
 
 ---
 
+# Real-World Production Story
+
+## Ecommerce Scraper / Large Dataset Performance Issue
+One recurring production issue involved aggressive scraping and traversal of large ecommerce catalog result sets.
+
+Symptoms:
+- intermittent site slowdowns
+- elevated query latency
+- random production degradation
+- downstream SQL pressure
+
+Investigation:
+- analyzed server logs
+- used Azure Application Insights telemetry
+- identified repetitive large-result-set browsing patterns
+- traced ancillary SQL queries tied to search/catalog operations
+
+Architecture Notes:
+- Elasticsearch handled most search traffic efficiently
+- some supporting relational queries became bottlenecks under sustained scraping activity
+
+Mitigation:
+- throttled large dataset access patterns
+- optimized query paths
+- reduced unnecessary downstream load
+- in some cases provided alternate business data access methods
+
+Operational Lessons:
+- production traffic patterns differ greatly from development environments
+- observability and telemetry are critical
+- retries and large scans can amplify outages
+- graceful throttling protects downstream systems
+
+---
+
 ## Microservices vs Monolith
 
 ### Monolith
 Single deployable application.
+
+### Modular Monolith
+Single deployable application with strong internal separation of concerns.
 
 ### Microservices
 Smaller independently deployable services.
